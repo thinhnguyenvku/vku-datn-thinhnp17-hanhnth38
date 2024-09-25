@@ -49,6 +49,8 @@ export const applyJob = async (req, res) => {
 	}
 };
 
+// haha
+
 export const getAppliedJobs = async (req, res) => {
 	try {
 		const userId = req.id;
