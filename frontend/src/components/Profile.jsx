@@ -9,7 +9,6 @@ import { useState } from "react";
 import UpdateProfileDialog from "./UpdateProfileDialog";
 import { useSelector } from "react-redux";
 
-const skills = ["Html", "Css", "Javascript", "Reactjs"];
 const isResume = true;
 
 const Profile = () => {
