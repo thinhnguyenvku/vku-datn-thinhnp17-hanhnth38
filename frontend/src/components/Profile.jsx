@@ -30,9 +30,7 @@ const Profile = () => {
 							<h1 className="font-medium text-xl">
 								{user?.fullname}
 							</h1>
-							<p>
-								{user?.profile?.bio}
-							</p>
+							<p>{user?.profile?.bio}</p>
 						</div>
 					</div>
 					<Button
@@ -70,10 +68,10 @@ const Profile = () => {
 					{isResume ? (
 						<a
 							target="blank"
-							href="https://facebook.com/nguyen.phuoc.thinh.411"
+							href={user?.profile?.resume}
 							className="text-blue-500 w-full hover:underline cursor-pointer"
 						>
-							Nguyen Phuoc Thinh Resume
+							{user?.profile?.resumeOriginalName}
 						</a>
 					) : (
 						<span>N/A</span>
