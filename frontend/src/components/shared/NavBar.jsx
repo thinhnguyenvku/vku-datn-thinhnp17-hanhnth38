@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const NavBar = () => {
-	const {user} = useSelector(store=>store.auth);
+	const { user } = useSelector((store) => store.auth);
 	return (
 		<div className="bg-white">
 			<div className="flex items-center justify-between mx-auto max-w-7xl h-16">
@@ -70,7 +70,9 @@ const NavBar = () => {
 									<div className="flex w-fit items-center gap-2 cursor-pointer">
 										<User2 />
 										<Button variant="link">
-											View Profile
+											<Link to="/profile">
+												View Profile
+											</Link>
 										</Button>
 									</div>
 									<div className="flex w-fit items-center gap-2 cursor-pointer">
