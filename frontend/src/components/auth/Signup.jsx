@@ -32,7 +32,7 @@ const Signup = () => {
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const {loading} = useSelector(store=>store.auth);
+	const { loading } = useSelector((store) => store.auth);
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
@@ -63,7 +63,7 @@ const Signup = () => {
 		} catch (error) {
 			console.log(error);
 			toast.error(error.response.data.message);
-		} finally{
+		} finally {
 			dispatch(setLoading(false));
 		}
 	};
@@ -82,8 +82,8 @@ const Signup = () => {
 						<Label>Full Name</Label>
 						<Input
 							type="text"
-							value={input.fullName}
-							name="fullName"
+							value={input.fullname}
+							name="fullname"
 							onChange={changeEventHandler}
 							placeholder="Enter your fullname"
 						/>

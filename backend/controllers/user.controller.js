@@ -119,19 +119,17 @@ export const logout = async (req, res) => {
 export const updateProfile = async (req, res) => {
 	try {
 		const { fullname, email, phoneNumber, bio, skills } = req.body;
-		const file = req.file;
 
 		let skillsArray;
 		if (skills) {
 			skillsArray = skills.split(",");
 		}
-
 		const userId = req.id;
-
 		let user = await User.findById(userId);
+
 		if (!user) {
 			return res.status(400).json({
-				message: "User not found",
+				message: "User not found.",
 				success: false,
 			});
 		}
@@ -154,9 +152,9 @@ export const updateProfile = async (req, res) => {
 		};
 
 		return res.status(200).json({
-			message: "Profile updated successfully",
+			message: "Profile updated successfully.",
 			user,
-			status: true,
+			success: true,
 		});
 	} catch (error) {
 		console.log(error);
