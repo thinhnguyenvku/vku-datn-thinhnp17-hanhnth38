@@ -1,32 +1,64 @@
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
+import { JOB_API_END_POINT } from "@/utils/constants";
+import { setSingleJob } from "@/redux/jobSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const JobDescription = () => {
-	const isApplied = false;
+	
+
+	const { singleJob } = useSelector((store) => store.job);
+	const { user } = useSelector((store) => store.auth);
+
+	const params = useParams();
+	const jobId = params.id;
+	const dispatch = useDispatch();
+
+	const isApplied = singleJob?.applications?.some(application=>application.applicant === user?._id) || false;
+
+	useEffect(() => {
+		const fetchSingleJob = async () => {
+			try {
+				const res = await axios.get(
+					`${JOB_API_END_POINT}/get/${jobId}`,
+					{ withCredentials: true }
+				);
+				if (res.data.success) {
+					dispatch(setSingleJob(res.data.job));
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		fetchSingleJob();
+	}, [jobId, dispatch, user?._id]);
 
 	return (
 		<div className="max-w-7xl mx-auto my-10">
 			<div className="flex items-center justify-between">
 				<div>
-					<h1 className="font-bold text-xl">Fullstack Developer</h1>
+					<h1 className="font-bold text-xl">{singleJob?.title}</h1>
 					<div className="flex items-center gap-2 mt-4">
 						<Badge
 							className={"text-blue-700 font-bold"}
 							variant="ghost"
 						>
-							12 Positions
+							{singleJob?.position} Positions
 						</Badge>
 						<Badge
 							className={"text-[#F83002] font-bold"}
 							variant="ghost"
 						>
-							Fulltime
+							{singleJob?.jobType}
 						</Badge>
 						<Badge
 							className={"text-[#7209b7] font-bold"}
 							variant="ghost"
 						>
-							$1000
+							${singleJob?.salary}
 						</Badge>
 					</div>
 				</div>
@@ -46,44 +78,45 @@ const JobDescription = () => {
 			</h1>
 			<div className="my-4">
 				<h1 className="font-bold my-1">
-					Role:{" "}
+					Role:
 					<span className="pl-4 font-normal text-gray-800">
-						Developer
+						{singleJob?.title}
 					</span>
 				</h1>
 				<h1 className="font-bold my-1">
-					Location:{" "}
+					Location:
 					<span className="pl-4 font-normal text-gray-800">
-						Da Nang
+						{singleJob?.location}
 					</span>
 				</h1>
 				<h1 className="font-bold my-1">
-					Description:{" "}
+					Description:
 					<span className="pl-4 font-normal text-gray-800">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Deleniti, ea.
+						{singleJob?.description}
 					</span>
 				</h1>
 				<h1 className="font-bold my-1">
-					Experience:{" "}
+					Experience:
 					<span className="pl-4 font-normal text-gray-800">
-						5 yrs
+						{singleJob?.experienceLevel}
 					</span>
 				</h1>
 				<h1 className="font-bold my-1">
-					Salary:{" "}
+					Salary:
 					<span className="pl-4 font-normal text-gray-800">
-						$1000
+						${singleJob?.salary}
 					</span>
 				</h1>
 				<h1 className="font-bold my-1">
-					Total Applicants:{" "}
-					<span className="pl-4 font-normal text-gray-800">20</span>
+					Total Applicants:
+					<span className="pl-4 font-normal text-gray-800">
+						{singleJob?.applications.length}
+					</span>
 				</h1>
 				<h1 className="font-bold my-1">
-					Posted Date:{" "}
+					Posted Date:
 					<span className="pl-4 font-normal text-gray-800">
-						30-10-2024
+						{singleJob?.createdAt.split("T")[0]}
 					</span>
 				</h1>
 			</div>
