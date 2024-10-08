@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { RadioGroup } from "../ui/radio-group";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { USER_API_END_POINT } from "@/utils/constants";
 import { toast } from "sonner";
@@ -32,7 +32,7 @@ const Signup = () => {
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const { loading } = useSelector((store) => store.auth);
+	const { loading, user } = useSelector((store) => store.auth);
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
@@ -67,6 +67,12 @@ const Signup = () => {
 			dispatch(setLoading(false));
 		}
 	};
+
+	useEffect(() => {
+		if (user) {
+			navigate("/");
+		}
+	}, []);
 
 	return (
 		<div>
