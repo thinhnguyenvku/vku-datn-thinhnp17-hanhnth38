@@ -62,14 +62,12 @@ export const getAppliedJobs = async (req, res) => {
 					options: { sort: { createdAt: -1 } },
 				},
 			});
-
 		if (!application) {
 			return res.status(404).json({
-				message: "No applications",
+				message: "No Applications",
 				success: false,
 			});
 		}
-
 		return res.status(200).json({
 			application,
 			success: true,
