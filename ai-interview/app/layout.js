@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider, SignIn } from "@clerk/nextjs";
+import Header from "./ai-interview/_components/Header";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -25,9 +26,18 @@ export default function RootLayout({ children }) {
 				<body
 					className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 				>
-					{children}
+					<main>{children}</main>
 				</body>
 			</html>
 		</ClerkProvider>
+	);
+}
+
+// Update the Home component to include the SignIn form
+export function Home() {
+	return (
+		<div>
+			<SignIn />
+		</div>
 	);
 }

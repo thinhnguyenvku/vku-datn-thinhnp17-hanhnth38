@@ -80,7 +80,7 @@ const NavBar = () => {
 									<Link to="/browse">Browse</Link>
 								</li>
 								<li>
-									<Link to="http://localhost:3000/">
+									<Link to="http://localhost:5178/ai-interview">
 										AI Interview
 									</Link>
 								</li>
