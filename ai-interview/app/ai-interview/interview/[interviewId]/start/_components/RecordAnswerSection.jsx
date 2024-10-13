@@ -20,6 +20,8 @@ function RecordAnswerSection({
 	const { user } = useUser();
 	const [loading, setLoading] = useState(false);
 
+	const [lang] = useState();
+
 	const {
 		error,
 		interimResult,
@@ -55,13 +57,28 @@ function RecordAnswerSection({
 
 	const UpdateUserAnswer = async () => {
 		setLoading(true);
+		// const feedbackPrompt =
+		// 	lang === "English"
+		// 		? "Question : " +
+		// 		  mockInterviewQuestions[activeQuestionIndex]?.question +
+		// 		  ", User Answer : " +
+		// 		  userAnswer +
+		// 		  ", Depends on the question and answer for given interview question" +
+		// 		  "Please give me rating for answer out of 10 and feedback as area of improvement if any in just 3 to 5 lines to improve it in JSON format with rating field and feedback field"
+		// 		: "Câu hỏi : " +
+		// 		  mockInterviewQuestions[activeQuestionIndex]?.question +
+		// 		  ", Người dùng trả lời : " +
+		// 		  userAnswer +
+		// 		  ", Dựa vào câu hỏi và câu trả lời cho câu hỏi phỏng vấn" +
+		// 		  "Vui lòng cho tôi xếp hạng cho câu trả lời trên 10 và phản hồi những điều cần cải thiện nếu có bằng tiếng Việt chỉ trong 3 đến 5 dòng để cải thiện câu trả lời đó ở định dạng JSON với trường xếp hạng và trường phản hồi";
+
 		const feedbackPrompt =
 			"Question : " +
 			mockInterviewQuestions[activeQuestionIndex]?.question +
 			", User Answer : " +
 			userAnswer +
 			", Depends on the question and answer for given interview question" +
-			"Please give us rating for answer out of 10 and feedback as area of improvement if any in just 3 to 5 lines to improve it in JSON format with rating field and feedback field";
+			"Please give me rating for answer out of 10 and feedback as area of improvement if any in just 3 to 5 lines to improve it in JSON format with rating field and feedback field (Feedback bằng tiếng Anh hoặc tiếng Việt dựa vào ngôn ngữ của câu trả lời)";
 
 		const result = await chatSession.sendMessage(feedbackPrompt);
 		const mockJsonResp = result.response

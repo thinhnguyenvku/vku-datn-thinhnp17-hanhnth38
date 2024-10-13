@@ -42,6 +42,14 @@ function Interview({ params }) {
 							<strong>Years Of Experience : </strong>
 							{interviewData?.jobExperience}
 						</h2>
+						<h2 className="text-lg">
+							<strong>Interview Language : </strong>
+							{interviewData?.lang}
+						</h2>
+						<h2 className="text-lg">
+							<strong>Number Of Question : </strong>
+							{interviewData?.questionNumber}
+						</h2>
 					</div>
 					<div className="p-5 border rounded-lg border-yellow-300 bg-yellow-100">
 						<h2 className="flex gap-2 items-center text-yellow-500">

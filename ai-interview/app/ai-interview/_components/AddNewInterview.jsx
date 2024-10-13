@@ -24,6 +24,8 @@ function AddNewInterview() {
 	const [jobPosition, setJobPosition] = useState();
 	const [jobDesc, setJobDesc] = useState();
 	const [jobExperience, setJobExperience] = useState();
+	const [questionNumber, setQuestionNumber] = useState();
+	const [lang, setLang] = useState();
 	const [loading, setLoading] = useState(false);
 	const [JsonResponse, setJsonResponse] = useState([]);
 	const { user } = useUser();
@@ -34,15 +36,25 @@ function AddNewInterview() {
 		e.preventDefault();
 
 		const InputPrompt =
-			"Job Position: " +
-			jobPosition +
-			", Job Description: " +
-			jobDesc +
-			", Years of Experience: " +
-			jobExperience +
-			", Depends on this information please give me " +
-			process.env.NEXT_PUBLIC_INTERVIEW_QUESTION_COUNT +
-			" interview question with answers in JSON format only with no backticks. Doesn't need extra info, only questions and answers.";
+			lang === "English"
+				? "Job Position: " +
+				  jobPosition +
+				  ", Job Description: " +
+				  jobDesc +
+				  ", Years of Experience: " +
+				  jobExperience +
+				  ", Depends on this information please give me " +
+				  questionNumber +
+				  " interview question with answers in JSON format [{}, {}, ...] only with no backticks. Doesn't need extra info, only questions and answers."
+				: "Vị trí công việc: " +
+				  jobPosition +
+				  ", Mô tả công việc: " +
+				  jobDesc +
+				  ", Số năm kinh nghiệm: " +
+				  jobExperience +
+				  ", Dựa vào thông tin này xin vui lòng cho tôi biết " +
+				  questionNumber +
+				  " câu hỏi phỏng vấn bằng tiếng Việt có câu trả lời ở định dạng JSON với dấu [] ở bên ngoài và các dấu {} ở bên trong. Không cần thông tin bổ sung, chỉ có câu hỏi và câu trả lời.";
 
 		const result = await chatSession.sendMessage(InputPrompt);
 		const MockJsonResp = result.response
@@ -61,6 +73,8 @@ function AddNewInterview() {
 					jobPosition: jobPosition,
 					jobDesc: jobDesc,
 					jobExperience: jobExperience,
+					questionNumber: questionNumber,
+					lang: lang,
 					createdBy: user?.primaryEmailAddress?.emailAddress,
 					createdAt: moment().format("DD-MM-yyyy"),
 				})
@@ -99,7 +113,10 @@ function AddNewInterview() {
 										years of experience.
 									</h2>
 									<div className="mt-7 my-2">
-										<label htmlFor="">
+										<label
+											htmlFor=""
+											className="font-semibold"
+										>
 											Job Role/Job Position
 										</label>
 										<Input
@@ -113,7 +130,10 @@ function AddNewInterview() {
 										/>
 									</div>
 									<div className="mt-7 my-2">
-										<label htmlFor="">
+										<label
+											htmlFor=""
+											className="font-semibold"
+										>
 											Job Description/ Tech Stack (In
 											Short)
 										</label>
@@ -126,7 +146,10 @@ function AddNewInterview() {
 										/>
 									</div>
 									<div className="mt-7 my-2">
-										<label htmlFor="">
+										<label
+											htmlFor=""
+											className="font-semibold"
+										>
 											Years of experience.
 										</label>
 										<Input
@@ -135,6 +158,66 @@ function AddNewInterview() {
 											max="50"
 											onChange={(event) =>
 												setJobExperience(
+													event.target.value
+												)
+											}
+											required
+										/>
+									</div>
+									<div className="mt-7 my-2">
+										<label
+											htmlFor="lang"
+											className="font-semibold"
+										>
+											Select Language
+										</label>
+										<div className="flex gap-5 mt-3">
+											<label className="flex items-center space-x-3">
+												<input
+													type="radio"
+													value="English"
+													checked={lang === "English"}
+													onChange={() =>
+														setLang("English")
+													}
+													className="form-radio h-5 w-5 text-blue-600"
+												/>
+												<span className="text-md">
+													English
+												</span>
+											</label>
+											<label className="flex items-center space-x-3">
+												<input
+													type="radio"
+													value="Vietnamese"
+													checked={
+														lang === "Vietnamese"
+													}
+													onChange={() =>
+														setLang("Vietnamese")
+													}
+													className="form-radio h-5 w-5 text-blue-600"
+												/>
+												<span className="text-md">
+													Vietnamese
+												</span>
+											</label>
+										</div>
+									</div>
+
+									<div className="mt-7 my-2">
+										<label
+											htmlFor=""
+											className="font-semibold"
+										>
+											Number of Questions.
+										</label>
+										<Input
+											placeholder="Ex. 5"
+											type="number"
+											max="50"
+											onChange={(event) =>
+												setQuestionNumber(
 													event.target.value
 												)
 											}

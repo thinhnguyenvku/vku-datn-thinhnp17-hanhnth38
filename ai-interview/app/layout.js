@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ClerkProvider, SignIn } from "@clerk/nextjs";
 import Header from "./ai-interview/_components/Header";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -26,7 +27,10 @@ export default function RootLayout({ children }) {
 				<body
 					className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 				>
-					<main>{children}</main>
+					<main>
+						<Toaster />
+						{children}
+					</main>
 				</body>
 			</html>
 		</ClerkProvider>
