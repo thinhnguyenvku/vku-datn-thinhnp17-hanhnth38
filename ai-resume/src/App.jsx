@@ -1,12 +1,19 @@
-import './App.css'
+import { Navigate, Outlet } from "react-router-dom";
+import "./App.css";
+import { useUser } from "@clerk/clerk-react";
 
 function App() {
+	const { user, isLoaded, isSignedIn } = useUser();
 
-  return (
-    <>
-      VKU JOB PORTAL - AI RESUME
-    </>
-  )
+	if (!isSignedIn) {
+		return <Navigate to={"/auth/sign-in"} />;
+	}
+
+	return (
+		<>
+			<Outlet />
+		</>
+	);
 }
 
-export default App
+export default App;

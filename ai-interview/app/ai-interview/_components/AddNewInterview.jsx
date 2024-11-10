@@ -45,7 +45,7 @@ function AddNewInterview() {
 				  jobExperience +
 				  ", Depends on this information please give me " +
 				  questionNumber +
-				  " interview question with answers in JSON format [{}, {}, ...] only with no backticks. Doesn't need extra info, only questions and answers."
+				  " interview question by english with answers in JSON format [{}, {}, ...] only with no backticks. Doesn't need extra info, only questions and answers."
 				: "Vị trí công việc: " +
 				  jobPosition +
 				  ", Mô tả công việc: " +
@@ -54,7 +54,7 @@ function AddNewInterview() {
 				  jobExperience +
 				  ", Dựa vào thông tin này xin vui lòng cho tôi biết " +
 				  questionNumber +
-				  " câu hỏi phỏng vấn bằng tiếng Việt có câu trả lời ở định dạng JSON với dấu [] ở bên ngoài và các dấu {} ở bên trong. Không cần thông tin bổ sung, chỉ có câu hỏi và câu trả lời.";
+				  " câu hỏi phỏng vấn bằng tiếng Việt có câu trả lời ở định dạng JSON với dấu [] ở bên ngoài và các dấu {} ở bên trong, 2 từ khóa bên trong là question và answer. Không cần thông tin bổ sung, chỉ có câu hỏi và câu trả lời.";
 
 		const result = await chatSession.sendMessage(InputPrompt);
 		const MockJsonResp = result.response
