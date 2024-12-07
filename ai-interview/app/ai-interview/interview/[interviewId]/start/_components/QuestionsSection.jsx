@@ -5,7 +5,12 @@ function QuestionsSection({ mockInterviewQuestions, activeQuestionIndex }) {
 	const textToSpeech = (text) => {
 		if ("speechSynthesis" in window) {
 			const speech = new SpeechSynthesisUtterance(text);
-			window.speechSynthesis.speak(speech);
+			
+			if (typeof window !== "undefined") {
+				window.speechSynthesis.speak(speech);
+			  } else {
+				console.error("Cannot redirect because `window` is not available.");
+			  }
 		} else {
 			alert("Sorry, Your browser doesn't support text to speech");
 		}
