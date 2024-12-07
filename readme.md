@@ -2,6 +2,6 @@ VKU Job Portal Project
 
 Install Dependencies: npm install
 
-Build --> Production: npm build
+Build --> Production: npm run build
 
 Run: npm run dev
