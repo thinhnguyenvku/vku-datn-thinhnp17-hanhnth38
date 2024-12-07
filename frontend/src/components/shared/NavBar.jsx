@@ -79,6 +79,16 @@ const NavBar = () => {
 								<li>
 									<Link to="/browse">Browse</Link>
 								</li>
+								<li>
+									<Link to="http://localhost:5178/ai-interview">
+										AI Interview
+									</Link>
+								</li>
+								<li>
+									<Link to="http://localhost:5170/ai-cv">
+										AI Resume
+									</Link>
+								</li>
 							</>
 						)}
 					</ul>

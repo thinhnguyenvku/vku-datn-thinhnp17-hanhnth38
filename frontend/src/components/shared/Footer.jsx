@@ -2,15 +2,30 @@ const Footer = () => {
 	return (
 		<footer className="border-t border-t-gray-200 py-8">
 			<div className="container mx-auto px-4">
-				<div className="flex flex-col md:flex-row justify-between items-center">
-					<div className="mb-4 md:mb-0">
-						<h2 className="text-xl font-bold">VKU Job Portal</h2>
+				<div className="flex justify-between items-center">
+					<div className="flex flex-col text-center md:text-left">
+						<h2 className="text-xl font-bold">
+							<span className="text-[#F83002]">V</span>
+							<span className="text-yellow-500">K</span>
+							<span className="text-blue-500">U </span>Job
+							<span className="text-[#F83002]"> Portal</span>
+						</h2>
+
 						<p className="text-sm">
 							© 2024 Your Company. All rights reserved.
 						</p>
 					</div>
 
-					<div className="flex space-x-4 mt-4 md:mt-0">
+					<div className="flex space-x-8">
+						<a href="/about-us" className="hover:text-gray-400">
+							About Us
+						</a>
+						<a href="/contact" className="hover:text-gray-400">
+							Contact
+						</a>
+					</div>
+
+					<div className="flex space-x-4">
 						<a
 							href="https://facebook.com"
 							className="hover:text-gray-400"
