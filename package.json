@@ -1,19 +1,42 @@
 {
 	"devDependencies": {
-		"npm-run-all": "^4.1.5"
+	  "npm-run-all": "^4.1.5"
 	},
 	"scripts": {
-		"dev:frontend": "npm run start --prefix ./frontend",
-		"dev:backend": "npm run start --prefix ./backend",
-		"dev:ai1": "npm run start --prefix ./ai-interview",
-		"dev:ai2": "npm run start --prefix ./ai-cv-builder",
-		"dev": "npm-run-all --parallel dev:frontend dev:backend dev:ai1 dev:ai2"
+	  "dev:frontend": "npm run start --prefix ./frontend",
+	  "dev:backend": "npm run start --prefix ./backend",
+	  "dev:ai1": "npm run start --prefix ./ai-interview",
+	  "dev:ai2": "npm run start --prefix ./ai-cv-builder",
+	  "dev": "npm-run-all --parallel dev:frontend dev:backend dev:ai1 dev:ai2",
+	  
+	  "build:frontend": "npm run build --prefix ./frontend",
+	  "build:ai1": "npm run build --prefix ./ai-interview",
+	  "build:ai2": "npm run build --prefix ./ai-cv-builder",
+	  "build": "npm-run-all --parallel build:frontend build:ai1 build:ai2",
+  
+	  "install:frontend": "npm install --prefix ./frontend",
+	  "install:backend": "npm install --prefix ./backend",
+	  "install:ai1": "npm install --prefix ./ai-interview",
+	  "install:ai2": "npm install --prefix ./ai-cv-builder",
+	  "install": "npm-run-all --parallel install:frontend install:backend install:ai1 install:ai2"
 	},
 	"scripts-sub": {
-		"dev:frontend": "npm run dev --prefix ./frontend",
-		"dev:backend": "npm run dev --prefix ./backend",
-		"dev:ai1": "npm run dev --prefix ./ai-interview",
-		"dev:ai2": "npm run dev --prefix ./ai-cv-builder",
-		"dev": "npm-run-all --parallel dev:frontend dev:backend dev:ai1 dev:ai2"
+	  "dev:frontend": "npm run dev --prefix ./frontend",
+	  "dev:backend": "npm run dev --prefix ./backend",
+	  "dev:ai1": "npm run dev --prefix ./ai-interview",
+	  "dev:ai2": "npm run dev --prefix ./ai-cv-builder",
+	  "dev": "npm-run-all --parallel dev:frontend dev:backend dev:ai1 dev:ai2",
+  
+	  "build:frontend": "npm run build --prefix ./frontend",
+	  "build:ai1": "npm run build --prefix ./ai-interview",
+	  "build:ai2": "npm run build --prefix ./ai-cv-builder",
+	  "build": "npm-run-all --parallel build:frontend build:ai1 build:ai2",
+  
+	  "install:frontend": "npm install --prefix ./frontend",
+	  "install:backend": "npm install --prefix ./backend",
+	  "install:ai1": "npm install --prefix ./ai-interview",
+	  "install:ai2": "npm install --prefix ./ai-cv-builder",
+	  "install": "npm-run-all --parallel install:frontend install:backend install:ai1 install:ai2"
 	}
-}
+  }
+  
